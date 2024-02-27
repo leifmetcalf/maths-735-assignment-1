@@ -1,0 +1,45 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{xfrac}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\closure}{cl}
+\DeclareMathOperator{\frontier}{fr}
+
+\setlist[enumerate, 1]{leftmargin=0pt, label=\textbf{\arabic*.}}
+
+\begin{document}
+
+\begin{enumerate}
+
+\item \begin{enumerate}
+
+\item \(\otimes^2V^*\) equipped with pointwise addition forms a vector space. The identity element is \(0_{\otimes^2V^*}(x)\coloneqq0\). Let \(R,S,T\) be bilinear forms on \(V\) and let \(a,b\in\R\). The vector space axioms follow:
+\begin{gather*}
+R+(S+T)=(R+S)+T\\
+R+S=S+R\\
+R+0_{\otimes^2V^*}=R\\
+R+-R=0_{\otimes^2V^*}\\
+a(bR)=(ab)R\\
+1R=R\\
+a(R+S)=aR+aS\\
+(a+b)R=aR+bR
+\end{gather*}
+
+\item The inverse of a symmetric bilinear form is a symmetric bilinear form, and the addition of two symmetric bilinear forms is a symmetric bilinear form.
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
