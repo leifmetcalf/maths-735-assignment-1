@@ -6,6 +6,7 @@
 \usepackage{parskip}
 \usepackage{xfrac}
 
+\newcommand{\tr}{^{\mathsf{T}}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -15,7 +16,17 @@
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\interior}{int}
 \DeclareMathOperator{\closure}{cl}
-\DeclareMathOperator{\frontier}{fr}
+\DeclareMathOperator{\sgn}{sgn}
+
+\DeclareFontFamily{U}{mathb}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathb}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * mathb
+      <10.95> mathb10 <12> <14.4> <17.28> <20.74> <24.88> mathb12
+      }{}
+\DeclareSymbolFont{mathb}{U}{mathb}{m}{n}
+\DeclareFontSubstitution{U}{mathb}{m}{n}
+\let\dddot\relax
+\DeclareMathAccent{\dddot}{0}{mathb}{"3B}
 
 \setlist[enumerate, 1]{leftmargin=0pt, label=\textbf{\arabic*.}}
 
@@ -25,30 +36,93 @@
 
 \item \begin{enumerate}
 
-\item \(\otimes^2V^*\) equipped with pointwise addition forms a vector space. The identity element is \(0_{\otimes^2V^*}(x)\coloneqq0\). Let \(R,S,T\) be bilinear forms on \(V\) and let \(a,b\in\R\). The vector space axioms follow:
+\item \(\otimes^2V^*\) is a subspace of the vector space of functions \(V\times V\to\R\) since the identity element \(0_{\otimes^2V^*}(x)\coloneqq0\) is a bilinear form, the sum of two bilinear forms is a bilinear form, and the negation of a bilinear form is a bilinear form.
+
+\item \(0_{\otimes^2V^*}\) is symmetric, the negation of a symmetric bilinear form is symmetric, and the sum of two symmetric bilinear forms is symmetric; so symmetric bilinear forms are a subspace of \(\otimes^2V^*\).
+
+\item Clearly \(\Lambda^2V^*\cap S^2V^*=\{0\}\). Let \(T\in\otimes^2V^*\). Define
 \begin{gather*}
-R+(S+T)=(R+S)+T\\
-R+S=S+R\\
-R+0_{\otimes^2V^*}=R\\
-R+-R=0_{\otimes^2V^*}\\
-a(bR)=(ab)R\\
-1R=R\\
-a(R+S)=aR+aS\\
-(a+b)R=aR+bR
+K(v,u)\coloneqq\half\big(T(u,v)-T(v,u)\big)\\
+H(u,v)\coloneqq\half\big(T(u,v)+T(v,u)\big)
 \end{gather*}
+Then \(T=K+H\) and \(K\in\Lambda^2V^*\) and \(H\in S^2V^*\), so \(\otimes^2V^*=\Lambda^2V^*+S^2V^*\) and hence \(\otimes^2V^*=\Lambda^2V^*\oplus S^2V^*\).
 
-\item The inverse of a symmetric bilinear form is a symmetric bilinear form, and the addition of two symmetric bilinear forms is a symmetric bilinear form.
-
-\item Clearly \(\Lambda^2V^*\) and \(S^2V^*\) are disjoint. Let \(T\in\otimes^2V^*\). Define
-\begin{gather*}
-R(v,u)\coloneqq\half\big(T(u,v)-T(v,u)\big)\\
-S(u,v)\coloneqq\half\big(T(u,v)+T(v,u)\big)
-\end{gather*}
-Then \(T=R+S\) and \(R\in\Lambda^2V^*\) and \(S\in S^2V^*\), so \(\otimes^2V^*=\Lambda^2V^*+S^2V^*\) and hence \(\otimes^2V^*=\Lambda^2V^*\oplus S^2V^*\).
-
-\item 
+\item Let \(\{e_1,e_2\}\) be a basis for \(V\). Define the bilinear form
+\[K(ae_1+be_2,ce_1+de_2)\coloneqq ad-bc.\]
+Let \(T\in\Lambda^2V^*\). Let \(ae_1+be_2,ce_1+de_2\in V\). Then by bilinearity
+\begin{align*}
+&T(ae_1+be_2,ce_1+de_2)\\
+&\quad=ac\cdot T(e_1,e_1)+ad\cdot T(e_1,e_2)+bc\cdot T(e_2,e_1)+bd\cdot T(e_2,e_2).
+\end{align*}
+But \(T\) is skew so \(T(e_1,e_1)=T(e_2,e_2)=0\) and \(T(e_1,e_2)=-T(e_2,e_1)\), and \(T\) simplifies to
+\[T(ae_1+be_2,ce_1+de_2)=(ad-bc)T(e_1,e_2).\]
+Hence \(T\) is a constant multiple of \(K\) and so \(\dim(\Lambda^2V^*)=1\).
+\item
 
 \end{enumerate}
+
+\item \begin{enumerate}
+
+\item We have
+\[\dot c(t)=(2t,3t^2)\]
+and hence on \(\R\setminus\{0\}\) we have
+\begin{align*}
+e_1(t)&=\frac1{\sqrt{4t^2+9t^4}}\begin{pmatrix}2t\\3t^2\end{pmatrix}\\
+e_2(t)&=\frac1{\sqrt{4t^2+9t^4}}\begin{pmatrix}-3t^2\\2t\end{pmatrix}.
+\end{align*}
+Note
+\[e_1(t)=\frac1{\sqrt{4+9t^2}}\begin{pmatrix}2\sgn t\\3\abs{t}\end{pmatrix}.\]
+But there's no possible value that makes \(\sgn t\) continuous on \(\R\), so there cannot be a distinguished Frenet frame for \(c\) on all of \(\R\).
+
+\item Note
+\begin{align*}
+\dot c(t)&=\abs{\dot c(t)}e_1(t)\\
+\ddot c(t)&=D\big[\abs{\dot c(t)}\big]e_1(t)+\abs{\dot c(t)}\dot e_1(t)\\
+&=D\big[\abs{\dot c(t)}\big]e_1(t)+\abs{\dot c(t)}^2\kappa(t)e_2(t)
+\end{align*}
+so
+\[\det(\dot c(t),\ddot c(t))=\abs{\dot c(t)}^3\kappa(t)\]
+and hence
+\[\kappa(t)=\frac{\det(\dot c(t),\ddot c(t))}{\abs{\dot c(t)}^3}.\]
+
+\item
+
+\end{enumerate}
+
+\item As above we have
+\begin{align*}
+\dot c(t)&=\abs{\dot c(t)}e_1(t)\\
+\ddot c(t)&=\abs{\dot c(t)}\dot e_1(t)+o_1=\abs{\dot c(t)}^2\kappa(t)e_2(t)+o_1\\
+\dddot c(t)&=\abs{\dot c(t)}^2\kappa(t)\dot e_2(t)+o_2=\abs{\dot c(t)}^3\kappa(t)\tau(t)e_3(t)+o_2
+\end{align*}
+where \(o_i\) is some vector in the span of \(e_1(t),\dots,e_i(t)\) which we ignore because it doesn't affect the determinants
+\begin{align*}
+\det(\dot c(t),\ddot c(t))&=\abs{\dot c(t)}^3\kappa(t)\\
+\det(\dot c(t),\ddot c(t),\dddot c(t))&=\abs{\dot c(t)}^6\kappa(t)^2\tau(t).
+\end{align*}
+Hence
+\begin{gather*}
+\kappa(t)=\frac{\abs{\dot c(t)\times\ddot c(t)}}{\abs{\dot c(t)}^3}\\
+\tau(t)=\frac{\det(\dot c(t),\ddot c(t),\dddot c(t))}{\abs{\dot c(t)\times\ddot c(t)}^2}.
+\end{gather*}
+
+\item \begin{enumerate}
+
+\item
+
+\item
+
+\end{enumerate}
+
+\item I don't know how to prove \(\dot R(t)\) is an endomorphism. Let \(t\in\R\) and \(u,v\in\R^n\). Since \(R(t)\) is a orthogonal transformation we have
+\[R(t)u\cdot R(t)v=u\cdot v.\]
+Differentiating both sides gives
+\[\dot R(t)u\cdot R(t)v+R(t)u\cdot\dot R(t)v=0\]
+and so since \(R(0)=\text{id}_{\R^n}\) we have
+\[\dot R(t)u\cdot v+u\cdot\dot R(t)v=0\]
+
+\item Note
+\[2\langle u,v\rangle=\abs{u+v}^2-\abs{u}^2+\abs{v}^2\]
 
 \end{enumerate}
 
