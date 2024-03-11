@@ -5,6 +5,7 @@
 \usepackage{enumitem}
 \usepackage{parskip}
 \usepackage{xfrac}
+\usepackage{xcolor}
 
 \newcommand{\tr}{^{\mathsf{T}}}
 \newcommand{\N}{\mathbb{N}}
@@ -57,7 +58,7 @@ Let \(T\in\Lambda^2V^*\). Let \(ae_1+be_2,ce_1+de_2\in V\). Then by bilinearity
 But \(T\) is skew so \(T(e_1,e_1)=T(e_2,e_2)=0\) and \(T(e_1,e_2)=-T(e_2,e_1)\), and \(T\) simplifies to
 \[T(ae_1+be_2,ce_1+de_2)=(ad-bc)T(e_1,e_2).\]
 Hence \(T\) is a constant multiple of \(K\) and so \(\dim(\Lambda^2V^*)=1\).
-\item
+\item {\color{red} COMPLETE ME}
 
 \end{enumerate}
 
@@ -85,7 +86,7 @@ so
 and hence
 \[\kappa(t)=\frac{\det(\dot c(t),\ddot c(t))}{\abs{\dot c(t)}^3}.\]
 
-\item
+\item {\color{red} COMPLETE ME}
 
 \end{enumerate}
 
@@ -108,21 +109,43 @@ Hence
 
 \item \begin{enumerate}
 
-\item
+\item {\color{red} COMPLETE ME}
 
-\item
+\item {\color{red} COMPLETE ME}
 
 \end{enumerate}
 
-\item I don't know how to prove \(\dot R(t)\) is an endomorphism. Let \(t\in\R\) and \(u,v\in\R^n\). Since \(R(t)\) is a orthogonal transformation we have
+\item {\color{red} I don't know how to prove \(\dot R(t)\) is an endomorphism.} Let \(t\in\R\) and \(u,v\in\R^n\). Since \(R(t)\) is a orthogonal transformation we have
 \[R(t)u\cdot R(t)v=u\cdot v.\]
 Differentiating both sides gives
 \[\dot R(t)u\cdot R(t)v+R(t)u\cdot\dot R(t)v=0\]
 and so since \(R(0)=\text{id}_{\R^n}\) we have
 \[\dot R(t)u\cdot v+u\cdot\dot R(t)v=0\]
 
-\item Note
-\[2\langle u,v\rangle=\abs{u+v}^2-\abs{u}^2+\abs{v}^2\]
+\item Let \(A:\R^n\to\R^n\) be an isometry that preserves the origin. \(A\) then also preserves the norm. Let \(u,v\in\R^n\). Expanding \(\abs{u+v}^2\) gives
+\[2\langle u,v\rangle=\abs{u+v}^2-\abs{u}^2+\abs{v}^2.\]
+Hence \(A\) also preserves the dot product. Let \(a\in\R\). Then
+\begin{align*}
+&\abs{A(au+v)-aAu-Av}^2\\
+={}&\abs{A(au+v)}^2\\
+&-2\langle A(au+v),aAu\rangle\\
+&-2\langle A(au+v),Av\rangle\\
+&+\abs{aAu}^2\\
+&-2\langle aAu,Av\rangle\\
+&+\abs{Av}^2\\
+={}&\abs{(au+v)}^2\\
+&-2\langle (au+v),au\rangle\\
+&-2\langle (au+v),v\rangle\\
+&+\abs{au}^2\\
+&-2\langle au,v\rangle\\
+&+\abs{v}^2\\
+={}&\abs{(au+v)-au-v}^2\\
+={}&0.
+\end{align*}
+So \(A(au+v)=aAu+Av\) and thus \(A\) is linear and hence an orthogonal transformation. Let \(T\) be translation by \(B0\). The usual metric on \(\R^n\) is translation-invariant so \(R\coloneqq T^{-1}\circ B\) is an isometry that preserves the origin. It is therefore an orthogonal transformation and so we have
+\[B=T\circ R\]
+as desired.
+
 
 \end{enumerate}
 
